@@ -1,0 +1,4 @@
+#This isn't a script. Execute this command while in a screen session. You need to run this command
+#with root privileges since it creates a new network interface on both machines. Setting port (-p) is optional, as well as your private key filename, as well as number of the network interface you create (tun13, in this case).
+sudo ssh -w 13:13 -p 8989 -i /home/username/.ssh/vpnserv root@XXX.XXX.XXX.XXX
+
