@@ -1,0 +1,10 @@
+#MacOS
+.DS_Store
+
+#Private keys
+*.pem
+*.key
+
+#Misc
+dh
+*.pub
