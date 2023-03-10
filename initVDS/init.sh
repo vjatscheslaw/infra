@@ -29,9 +29,9 @@ fi
 apt-get update -y && apt-get upgrade -y
 apt-get install -y linux-image-amd64 linux-headers-amd64
 
-adduser admine
+adduser admin
 
-mkdir /home/admine/.ssh
+mkdir /home/admin/.ssh
 
 clientCount=0
 
@@ -50,7 +50,7 @@ fi
 
 for file in resources/clients/*; do
     if [[ -f "$file" ]]; then
-        cat "$file" >> /home/admine/.ssh/authorized_keys
+        cat "$file" >> /home/admin/.ssh/authorized_keys
         cat "$file" >> /root/.ssh/authorized_keys
     fi
 done
@@ -63,7 +63,7 @@ if [ -f "/etc/ssh/sshd_config" ]; then
   sed -i 's/^PermitTunnel[[:space:]]\+[[:digit:]]\+$/#&/g' /etc/ssh/sshd_config
   echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
   echo "PermitRootLogin prohibit-password" >> /etc/ssh/sshd_config
-  #echo "AllowUsers root admine" >> /etc/ssh/sshd_config
+  #echo "AllowUsers root admin" >> /etc/ssh/sshd_config
   echo "PermitTunnel yes" >> /etc/ssh/sshd_config
   echo "Port 58883" >> /etc/ssh/sshd_config
 else

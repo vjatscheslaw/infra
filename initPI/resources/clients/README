@@ -1,0 +1,1 @@
+You need to put public SSH keys of every machine you want to grant access to connect to this machine via SSH. Simply put them in this folder, as separate files.

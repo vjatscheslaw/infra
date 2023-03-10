@@ -9,6 +9,7 @@ if [ "$(id -u)" != 0 ]; then
   exit 1
 fi
 
+#Here, you install your own Certificate Authority onto your linux machine, so that Unbound may continue using list of pre-installed system CAs (the ca-certificate package in Debian). You need to do it on both sides of your DNS-over-TLS Unbound nodes
 cp resources/unbound/ca3.pem /usr/local/share/ca-certificates/ca3.crt
 update-ca-certificates
 
@@ -26,6 +27,8 @@ if [ ! -f resources/unbound/unbound.conf ]; then
 fi
 
 cat resources/unbound/unbound.conf > /etc/unbound/unbound.conf
+
+#Something you won't need
 mkdir delete
 mv /etc/unbound/unbound_control.pem ./delete
 mv /etc/unbound/unbound_server.pem ./delete

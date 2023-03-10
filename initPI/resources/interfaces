@@ -1,0 +1,26 @@
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback
+
+allow-hotplug wlan0
+iface wlan0 inet static
+     address 96.96.96.1
+     netmask 255.255.255.0
+
+
+auto eth1
+allow-hotplug eth1
+iface eth1 inet static
+     address 66.66.66.1
+     netmask 255.255.255.0
+
+
+auto eth0
+iface eth0 inet static
+     hwaddress ether  XX:XX:XX:XX:XX:XX
+     address 100.100.100.171
+     gateway 100.100.100.1
+     netmask 255.255.255.0
+     nameserver 127.0.0.1
+

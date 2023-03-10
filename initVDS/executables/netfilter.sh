@@ -34,8 +34,8 @@ if [ ! -f /lib/systemd/system/cvstomfw.service ]; then
     exit 1
 fi
 
-#modprobe xt_limit #for nft netfilter frontend
-#modprobe nf_conntrack_netlink #for nft netfilter frontend
+#modprobe xt_limit #for nft netfilter frontend only
+#modprobe nf_conntrack_netlink #for nft netfilter frontend only
 
 systemctl start cvstomfw.service
 cvstom_fw_start_result=$?

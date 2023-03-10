@@ -1,0 +1,28 @@
+#You need to run this command with root privileges since it creates a new network interface on both machines. 
+#Setting port (-p) is optional (it is 22, by default), as well as your private key filename, as well as number of the network interface you create (tun13, in this case).
+sudo ssh -w 13:13 -p 8989 -i /home/username/.ssh/vpnserv root@XXX.XXX.XXX.XXX
+
+#I suggest you create small scripts on both client and server side.
+
+#Server side
+#!/bin/bash
+ip addr add 10.0.1.1/24 peer 10.0.1.2 dev tun13
+ip link set tun13 up
+
+#Client side
+#!/bin/bash
+ip addr add 10.0.1.2/24 peer 10.0.1.1 dev tun13
+ip link set tun13 up
+ip route del default
+#Old ifconfig obsolete style commented out
+#route add default gw 10.0.1.1 tun13
+ip route add 0/0 via 10.0.1.1 
+#'X's are your outer gateway (VDS, datacenter, VPN) IP. 'Y''s are your local ISP's gateway IP.
+#You definitely don't want to lock yourself out of the tunnel. This is why you leave this route
+ip route add XXX.XXX.XXX.XXX via YYY.YYY.YYY.YYY
+#!/bin/bash
+ip route del default
+#'Y's are your local ISP's gateway IP address
+ip route add 0/0 via YYY.YYY.YYY.YYY
+
+

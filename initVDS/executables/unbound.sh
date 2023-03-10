@@ -10,7 +10,12 @@ if [ "$(id -u)" != 0 ]; then
 fi
 
 cp resources/unbound/ca3.pem /usr/local/share/ca-certificates/ca3.crt
+#The further command is going to append your own CA certificate to a collection of system trusted CAs, the /etc/ssl/certs/ca-certificates.crt file. 
+#In order to remove your CA from /etc/ssl/certs/ca-certificates.crt file, you'll need
 update-ca-certificates
+#In order to remove your CA from /etc/ssl/certs/ca-certificates.crt file, you'll need to remove the ca3.crt file from /usr/local/share/ca-certificates/ folder, and
+#then run the `update-ca-certificates --fresh` command.
+
 
 #install Unbound
 apt-get install -y unbound unbound-host

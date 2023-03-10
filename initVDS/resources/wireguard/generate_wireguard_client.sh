@@ -61,6 +61,4 @@ chmod -v 600 /etc/wireguard/wg0.conf
 systemctl enable wg-quick@wg0.service
 systemctl restart wg-quick@wg0.service
 
-#reboot
-
 exit 0

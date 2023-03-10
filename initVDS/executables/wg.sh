@@ -38,7 +38,7 @@ chmod -v 600 "${server_config}"
 #    exec ./generate_wireguard_client.sh 1 4 ${server_public_key}
 #fi
 
-#Allow forwarding in Linux kernel
+#Allow packets forwarding in Linux kernel
 sysctl net.ipv4.ip_forward=1
 sysctl net.ipv6.conf.all.forwarding=1
 sysctl net.ipv6.conf.default.forwarding=1
